@@ -11,3 +11,49 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.row {
+  display: flex;
+  gap: 5px;
+}
+
+.tile {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  font-size: 18pt;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.correct {
+  background-color: lightgreen;
+}
+
+.close {
+  background-color: yellow;
+}
+
+.wrong {
+  background-color: gray;
+}
