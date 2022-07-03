@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useKeyboard } from "../hooks/useKeyboard";
+import { useRandomWord } from "../hooks/useRandomWord";
 import { Row } from "./Row";
-
-const API_URL = "https://random-word-api.herokuapp.com/word?length=";
 
 export interface BoardProps {
     length: number;
@@ -12,19 +11,9 @@ export interface BoardProps {
 export function Board(props: BoardProps) {
     console.log("board renders");
 
-    const [correctAnswer, setCorrectAnswer] = useState("");
+    const correctAnswer = useRandomWord(props.length);
     const [attempts, setAttemtps] = useState(Array<string>(props.attempts).fill(""));
-    const [isGameOver, setIsGameOver] = useState(false);
-
-    useEffect(() => {
-        fetch(API_URL + props.length, { method: "GET" })
-            .then(response => response.json())
-            .then(words => {
-                console.log(words[0]);
-                setCorrectAnswer(words[0].toLowerCase());
-            })
-            .catch(console.error);
-    }, []);
+    const [isGameOver, setIsGameOver] = useState(false);    
 
     const submitHandler = (answer: string) => {
         if (!isGameOver) {
